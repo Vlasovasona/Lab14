@@ -14,25 +14,25 @@ namespace Lab13_Test
     [TestClass]
     public class Test14
     {
-        // Приватний метод CaptureConsoleOutput принимает делегат Action в качестве параметра
-        private string ConsoleOutput(Action action) //вспомогательным метод для тестов проверки печати
+        // РџСЂРёРІР°С‚РЅРёР№ РјРµС‚РѕРґ CaptureConsoleOutput РїСЂРёРЅРёРјР°РµС‚ РґРµР»РµРіР°С‚ Action РІ РєР°С‡РµСЃС‚РІРµ РїР°СЂР°РјРµС‚СЂР°
+        private string ConsoleOutput(Action action) //РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рј РјРµС‚РѕРґ РґР»СЏ С‚РµСЃС‚РѕРІ РїСЂРѕРІРµСЂРєРё РїРµС‡Р°С‚Рё
 
         {
-            // Создается новый StringWriter, который будет использоваться для перехвата вывода консоли
-            // StringWriter это обертка над StringBuilder для записи символов в поток строк
+            // РЎРѕР·РґР°РµС‚СЃСЏ РЅРѕРІС‹Р№ StringWriter, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР»СЏ РїРµСЂРµС…РІР°С‚Р° РІС‹РІРѕРґР° РєРѕРЅСЃРѕР»Рё
+            // StringWriter СЌС‚Рѕ РѕР±РµСЂС‚РєР° РЅР°Рґ StringBuilder РґР»СЏ Р·Р°РїРёСЃРё СЃРёРјРІРѕР»РѕРІ РІ РїРѕС‚РѕРє СЃС‚СЂРѕРє
             using (var consoleOutput = new StringWriter())
             {
-                // Устанавливается consoleOutput как поток вывода консоли, чтобы перехватить вывод этой консоли
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ consoleOutput РєР°Рє РїРѕС‚РѕРє РІС‹РІРѕРґР° РєРѕРЅСЃРѕР»Рё, С‡С‚РѕР±С‹ РїРµСЂРµС…РІР°С‚РёС‚СЊ РІС‹РІРѕРґ СЌС‚РѕР№ РєРѕРЅСЃРѕР»Рё
                 Console.SetOut(consoleOutput);
-                // Выполняется переданное действие (action), которое содержит операции вывода информации в консоль
+                // Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ РїРµСЂРµРґР°РЅРЅРѕРµ РґРµР№СЃС‚РІРёРµ (action), РєРѕС‚РѕСЂРѕРµ СЃРѕРґРµСЂР¶РёС‚ РѕРїРµСЂР°С†РёРё РІС‹РІРѕРґР° РёРЅС„РѕСЂРјР°С†РёРё РІ РєРѕРЅСЃРѕР»СЊ
                 action.Invoke();
                 return consoleOutput.ToString();
             }
         }
-        //тиестирование вспомогательных методов
+        //С‚РёРµСЃС‚РёСЂРѕРІР°РЅРёРµ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… РјРµС‚РѕРґРѕРІ
 
         [TestMethod]
-        public void EmptyCollectionException() //тест на возникновение ошибки при попытке взаимодействия с пустой коллекцией 
+        public void EmptyCollectionException() //С‚РµСЃС‚ РЅР° РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРµ РѕС€РёР±РєРё РїСЂРё РїРѕРїС‹С‚РєРµ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ РїСѓСЃС‚РѕР№ РєРѕР»Р»РµРєС†РёРµР№ 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
@@ -42,7 +42,7 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void EmptyMyCollectionException() //тест на возникновение ошибки при попытке взаимодействия с пустой коллекцией 
+        public void EmptyMyCollectionException() //С‚РµСЃС‚ РЅР° РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРµ РѕС€РёР±РєРё РїСЂРё РїРѕРїС‹С‚РєРµ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ РїСѓСЃС‚РѕР№ РєРѕР»Р»РµРєС†РёРµР№ 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>();
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
@@ -52,11 +52,11 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void IGroupingException() //тест возникновения ошибки при отсутствии элементов в резульатате выполнения запроса/метода расширения, возвращающих объект типа IGroup
+        public void IGroupingException() //С‚РµСЃС‚ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РєРё РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё СЌР»РµРјРµРЅС‚РѕРІ РІ СЂРµР·СѓР»СЊР°С‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°/РјРµС‚РѕРґР° СЂР°СЃС€РёСЂРµРЅРёСЏ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёС… РѕР±СЉРµРєС‚ С‚РёРїР° IGroup
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "1", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
+            { "1", new Queue<object>(new object[] { new Instrument("Р¦РёСЂРєСѓР»СЊ", 111), new Instrument("РћС‚РІРµСЂС‚РєР°", 45) }) }
         };
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
@@ -65,7 +65,7 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void TestIEnumerableException_EmptyCollection()//тест возникновения ошибки при отсутствии элементов в резульатате выполнения запроса/метода расширения, возвращающих объект типа IEnumerable 
+        public void TestIEnumerableException_EmptyCollection()//С‚РµСЃС‚ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РєРё РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё СЌР»РµРјРµРЅС‚РѕРІ РІ СЂРµР·СѓР»СЊР°С‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°/РјРµС‚РѕРґР° СЂР°СЃС€РёСЂРµРЅРёСЏ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёС… РѕР±СЉРµРєС‚ С‚РёРїР° IEnumerable 
         {
             IEnumerable<object> emptyCollection = new List<object>();
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
@@ -75,14 +75,14 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void TestIGroupingException_EmptyGroups() ////тест возникновения ошибки при отсутствии элементов в резульатате выполнения запроса/метода расширения, возвращающих объект типа IGroup 
+        public void TestIGroupingException_EmptyGroups() ////С‚РµСЃС‚ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РєРё РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё СЌР»РµРјРµРЅС‚РѕРІ РІ СЂРµР·СѓР»СЊР°С‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°/РјРµС‚РѕРґР° СЂР°СЃС€РёСЂРµРЅРёСЏ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёС… РѕР±СЉРµРєС‚ С‚РёРїР° IGroup 
         {
             IEnumerable<IGrouping<double, MeasuringTool>> emptyGroups = new List<IGrouping<double, MeasuringTool>>();
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() => Lab_14.Program.IGroupingException(emptyGroups));
         }
 
         [TestMethod]
-        public void PrintFirstCollectionTest() //тест печати первой коллекции 
+        public void PrintFirstCollectionTest() //С‚РµСЃС‚ РїРµС‡Р°С‚Рё РїРµСЂРІРѕР№ РєРѕР»Р»РµРєС†РёРё 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
 
@@ -93,43 +93,43 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void PrintFirstCollectionTest_Exception() //тест на возникновение ошибки при попытке печати пустой коллекцией
+        public void PrintFirstCollectionTest_Exception() //С‚РµСЃС‚ РЅР° РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРµ РѕС€РёР±РєРё РїСЂРё РїРѕРїС‹С‚РєРµ РїРµС‡Р°С‚Рё РїСѓСЃС‚РѕР№ РєРѕР»Р»РµРєС†РёРµР№
         {
             //SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "1 магазин", new Queue<object>(new object[] { new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1) }) },
-            { "2 магазин", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
+            { "1 РјР°РіР°Р·РёРЅ", new Queue<object>(new object[] { new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1) }) },
+            { "2 РјР°РіР°Р·РёРЅ", new Queue<object>(new object[] { new HandTool(12, "Р‘РѕР»РіР°СЂРєР°", "РњРµС‚Р°Р»Р»"), new HandTool(15, "Р›РѕР±Р·РёРє", "Р–РµР»РµР·Рѕ") }) },
         };
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintSortedDictionary(collection); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("12: Болгарка, материал Металл"));
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("15: Лобзик, материал Железо"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: РџРёР»Р°, РјР°С‚РµСЂРёР°Р» Р”РµСЂРµРІРѕ, РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ РЎР°РЅС‚РёРјРµС‚СЂС‹, С‚РѕС‡РЅРѕСЃС‚СЊ 1"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("12: Р‘РѕР»РіР°СЂРєР°, РјР°С‚РµСЂРёР°Р» РњРµС‚Р°Р»Р»"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("15: Р›РѕР±Р·РёРє, РјР°С‚РµСЂРёР°Р» Р–РµР»РµР·Рѕ"));
             Lab_14.Program.EmptyCollectionException(collection);
         }
 
-        //первая часть
+        //РїРµСЂРІР°СЏ С‡Р°СЃС‚СЊ
 
-        //методы расширения
+        //РјРµС‚РѕРґС‹ СЂР°СЃС€РёСЂРµРЅРёСЏ
 
         [TestMethod]
-        public void Joint_FirstPart() //тест функции join 
+        public void Joint_FirstPart() //С‚РµСЃС‚ С„СѓРЅРєС†РёРё join 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1) }) },
-            { "2", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
-            { "3", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
+            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1) }) },
+            { "2", new Queue<object>(new object[] { new HandTool(12, "Р‘РѕР»РіР°СЂРєР°", "РњРµС‚Р°Р»Р»"), new HandTool(15, "Р›РѕР±Р·РёРє", "Р–РµР»РµР·Рѕ") }) },
+            { "3", new Queue<object>(new object[] { new Instrument("Р¦РёСЂРєСѓР»СЊ", 111), new Instrument("РћС‚РІРµСЂС‚РєР°", 45) }) }
         };
             List<AccuracyToMeasuringTool> list = new List<AccuracyToMeasuringTool>();
             list = Lab_14.Program.CreateNewList();
             var result = Lab_14.Program.Join_FirstPart(collection, list);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("{ Name = Пила, Material = Дерево, Accuracy = 1, Units = Сантиметры, ClassOfAccuracy = Приведенная точность }"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("{ Name = РџРёР»Р°, Material = Р”РµСЂРµРІРѕ, Accuracy = 1, Units = РЎР°РЅС‚РёРјРµС‚СЂС‹, ClassOfAccuracy = РџСЂРёРІРµРґРµРЅРЅР°СЏ С‚РѕС‡РЅРѕСЃС‚СЊ }"));
         }
 
         [TestMethod]
-        public void Joint_FirstPartException() //тест исключения при вызове join
+        public void Joint_FirstPartException() //С‚РµСЃС‚ РёСЃРєР»СЋС‡РµРЅРёСЏ РїСЂРё РІС‹Р·РѕРІРµ join
         {
             var collection = new SortedDictionary<string, Queue<object>>();
             List<AccuracyToMeasuringTool> list = new List<AccuracyToMeasuringTool>();
@@ -142,21 +142,21 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void FindItemsByAccuracy() //поиск элементов по точности измерительного инструмента 
+        public void FindItemsByAccuracy() //РїРѕРёСЃРє СЌР»РµРјРµРЅС‚РѕРІ РїРѕ С‚РѕС‡РЅРѕСЃС‚Рё РёР·РјРµСЂРёС‚РµР»СЊРЅРѕРіРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1) }) },
-            { "2", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
-            { "3", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
+            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1) }) },
+            { "2", new Queue<object>(new object[] { new HandTool(12, "Р‘РѕР»РіР°СЂРєР°", "РњРµС‚Р°Р»Р»"), new HandTool(15, "Р›РѕР±Р·РёРє", "Р–РµР»РµР·Рѕ") }) },
+            { "3", new Queue<object>(new object[] { new Instrument("Р¦РёСЂРєСѓР»СЊ", 111), new Instrument("РћС‚РІРµСЂС‚РєР°", 45) }) }
         };
             var result = Lab_14.Program.FindItemsByAccuracy(collection, 1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: РџРёР»Р°, РјР°С‚РµСЂРёР°Р» Р”РµСЂРµРІРѕ, РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ РЎР°РЅС‚РёРјРµС‚СЂС‹, С‚РѕС‡РЅРѕСЃС‚СЊ 1"));
         }
 
         [TestMethod]
-        public void WhereHandToolFirstPart() //поиск ручных инструментов в коллекции 
+        public void WhereHandToolFirstPart() //РїРѕРёСЃРє СЂСѓС‡РЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ РєРѕР»Р»РµРєС†РёРё 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
@@ -174,7 +174,7 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void WhereHandtoolFirstPartLINQ_ReturnsCorrectObjects() //поиск ручных инструментов с помощью LINQ запроса 
+        public void WhereHandtoolFirstPartLINQ_ReturnsCorrectObjects() //РїРѕРёСЃРє СЂСѓС‡РЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ СЃ РїРѕРјРѕС‰СЊСЋ LINQ Р·Р°РїСЂРѕСЃР° 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
@@ -189,7 +189,7 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void IntersectFirstPartLINQ_ReturnsCorrectIntersection() //Union первая коллекция поиск одинаковых элементов в коллекции 
+        public void IntersectFirstPartLINQ_ReturnsCorrectIntersection() //Union РїРµСЂРІР°СЏ РєРѕР»Р»РµРєС†РёСЏ РїРѕРёСЃРє РѕРґРёРЅР°РєРѕРІС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РєРѕР»Р»РµРєС†РёРё 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
@@ -203,7 +203,7 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void IntersectFirstPart_ReturnsCorrectIntersection() //Union первая коллекция поиск одинаковых элементов в коллекции 
+        public void IntersectFirstPart_ReturnsCorrectIntersection() //Union РїРµСЂРІР°СЏ РєРѕР»Р»РµРєС†РёСЏ РїРѕРёСЃРє РѕРґРёРЅР°РєРѕРІС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РєРѕР»Р»РµРєС†РёРё 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
@@ -217,25 +217,25 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void IntersectFirstPart() //Intersect второй тест 
+        public void IntersectFirstPart() //Intersect РІС‚РѕСЂРѕР№ С‚РµСЃС‚ 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
-            Instrument toolSpecial = new Library_10.Instrument("Добавленный инструмент для проверки", 12);
-            collection["1 магазин"].Enqueue(new Library_10.Instrument("Добавленный инструмент для проверки", 12));
-            collection["2 магазин"].Enqueue(new Library_10.Instrument("Добавленный инструмент для проверки", 12));
+            Instrument toolSpecial = new Library_10.Instrument("Р”РѕР±Р°РІР»РµРЅРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїСЂРѕРІРµСЂРєРё", 12);
+            collection["1 РјР°РіР°Р·РёРЅ"].Enqueue(new Library_10.Instrument("Р”РѕР±Р°РІР»РµРЅРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїСЂРѕРІРµСЂРєРё", 12));
+            collection["2 РјР°РіР°Р·РёРЅ"].Enqueue(new Library_10.Instrument("Р”РѕР±Р°РІР»РµРЅРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїСЂРѕРІРµСЂРєРё", 12));
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.UnionFirstPart(collection).Count(), 9);
         }
 
         [TestMethod]
-        public void MaxFirstPart() //поиск максимального хначения точности среди инструментов 
+        public void MaxFirstPart() //РїРѕРёСЃРє РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ С…РЅР°С‡РµРЅРёСЏ С‚РѕС‡РЅРѕСЃС‚Рё СЃСЂРµРґРё РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
             int ac = 120;
             for (int key = 1; key < 4; key++)
             {
-                foreach (object item in collection[$"{key} магазин"])
+                foreach (object item in collection[$"{key} РјР°РіР°Р·РёРЅ"])
                 {
                     if (item is MeasuringTool)
                     {
@@ -250,7 +250,7 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void MaxFirstPart_Exception() //исключение при отсутствии измерительных инструментов в коллекции 
+        public void MaxFirstPart_Exception() //РёСЃРєР»СЋС‡РµРЅРёРµ РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё РёР·РјРµСЂРёС‚РµР»СЊРЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ РєРѕР»Р»РµРєС†РёРё 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
@@ -264,14 +264,14 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void GroupByFirstPart() //группировка по точности измерительных инструментов 
+        public void GroupByFirstPart() //РіСЂСѓРїРїРёСЂРѕРІРєР° РїРѕ С‚РѕС‡РЅРѕСЃС‚Рё РёР·РјРµСЂРёС‚РµР»СЊРЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
-            MeasuringTool toolToChange = new MeasuringTool(1, "Лобзик", "Дерево", "Градусы", 5);
+            MeasuringTool toolToChange = new MeasuringTool(1, "Р›РѕР±Р·РёРє", "Р”РµСЂРµРІРѕ", "Р“СЂР°РґСѓСЃС‹", 5);
             for (int key = 1; key < 4; key++)
             {
-                foreach (object item in collection[$"{key} магазин"])
+                foreach (object item in collection[$"{key} РјР°РіР°Р·РёРЅ"])
                 {
                     if (item is MeasuringTool)
                     {
@@ -291,42 +291,42 @@ namespace Lab13_Test
             }
         }
 
-        ////LINQ-запросы
+        ////LINQ-Р·Р°РїСЂРѕСЃС‹
 
         [TestMethod]
-        public void Joint_LINQ() //проверка коррекцтной работы join 
+        public void Joint_LINQ() //РїСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС†С‚РЅРѕР№ СЂР°Р±РѕС‚С‹ join 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1) }) },
-            { "2", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
-            { "3", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
+            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1) }) },
+            { "2", new Queue<object>(new object[] { new HandTool(12, "Р‘РѕР»РіР°СЂРєР°", "РњРµС‚Р°Р»Р»"), new HandTool(15, "Р›РѕР±Р·РёРє", "Р–РµР»РµР·Рѕ") }) },
+            { "3", new Queue<object>(new object[] { new Instrument("Р¦РёСЂРєСѓР»СЊ", 111), new Instrument("РћС‚РІРµСЂС‚РєР°", 45) }) }
         };
             List<AccuracyToMeasuringTool> list = new List<AccuracyToMeasuringTool>();
             list = Lab_14.Program.CreateNewList();
             var result = Lab_14.Program.JoinFirstCollection(collection, list);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("{ Name = Пила, Material = Дерево, Accuracy = 1, Units = Сантиметры, ClassOfAccuracy = Приведенная точность }"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("{ Name = РџРёР»Р°, Material = Р”РµСЂРµРІРѕ, Accuracy = 1, Units = РЎР°РЅС‚РёРјРµС‚СЂС‹, ClassOfAccuracy = РџСЂРёРІРµРґРµРЅРЅР°СЏ С‚РѕС‡РЅРѕСЃС‚СЊ }"));
         }
 
         [TestMethod]
-        public void FindItemsByAccuracyLINQ() //проверка корректной работы метода, который ищет все элементы коллекции с указанной точностью 
+        public void FindItemsByAccuracyLINQ() //РїСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ РјРµС‚РѕРґР°, РєРѕС‚РѕСЂС‹Р№ РёС‰РµС‚ РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РєРѕР»Р»РµРєС†РёРё СЃ СѓРєР°Р·Р°РЅРЅРѕР№ С‚РѕС‡РЅРѕСЃС‚СЊСЋ 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1) }) },
-            { "2", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
-            { "3", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
+            { "1", new Queue<object>(new object[] { new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1) }) },
+            { "2", new Queue<object>(new object[] { new HandTool(12, "Р‘РѕР»РіР°СЂРєР°", "РњРµС‚Р°Р»Р»"), new HandTool(15, "Р›РѕР±Р·РёРє", "Р–РµР»РµР·Рѕ") }) },
+            { "3", new Queue<object>(new object[] { new Instrument("Р¦РёСЂРєСѓР»СЊ", 111), new Instrument("РћС‚РІРµСЂС‚РєР°", 45) }) }
         };
             List<AccuracyToMeasuringTool> list = new List<AccuracyToMeasuringTool>();
             list = Lab_14.Program.CreateNewList();
             var result = Lab_14.Program.FindItemsByAccuracy_LINQ(collection, 1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: РџРёР»Р°, РјР°С‚РµСЂРёР°Р» Р”РµСЂРµРІРѕ, РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ РЎР°РЅС‚РёРјРµС‚СЂС‹, С‚РѕС‡РЅРѕСЃС‚СЊ 1"));
         }
 
         [TestMethod]
-        public void WhereHandtoolFirstPartLINQ() //поиск ручных инструментов в коллекции 
+        public void WhereHandtoolFirstPartLINQ() //РїРѕРёСЃРє СЂСѓС‡РЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ РєРѕР»Р»РµРєС†РёРё 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
@@ -335,7 +335,7 @@ namespace Lab13_Test
                 result += item.ToString();
             for (int key = 1; key < 4; key++)
             {
-                foreach (object item in collection[$"{key} магазин"])
+                foreach (object item in collection[$"{key} РјР°РіР°Р·РёРЅ"])
                 {
                     if (item is HandTool)
                         Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(result.Contains(item.ToString()));
@@ -344,13 +344,13 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void IntersectFirstPartLINQ() //проверка корректной работы Intersect
+        public void IntersectFirstPartLINQ() //РїСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ Intersect
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
-            Instrument toolSpecial = new Library_10.Instrument("Добавленный инструмент для проверки", 12);
-            collection["1 магазин"].Enqueue(new Library_10.Instrument("Добавленный инструмент для проверки", 12));
-            collection["2 магазин"].Enqueue(new Library_10.Instrument("Добавленный инструмент для проверки", 12));
+            Instrument toolSpecial = new Library_10.Instrument("Р”РѕР±Р°РІР»РµРЅРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїСЂРѕРІРµСЂРєРё", 12);
+            collection["1 РјР°РіР°Р·РёРЅ"].Enqueue(new Library_10.Instrument("Р”РѕР±Р°РІР»РµРЅРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїСЂРѕРІРµСЂРєРё", 12));
+            collection["2 РјР°РіР°Р·РёРЅ"].Enqueue(new Library_10.Instrument("Р”РѕР±Р°РІР»РµРЅРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїСЂРѕРІРµСЂРєРё", 12));
             string result = "";
             foreach (var item in Lab_14.Program.UnionFirstPartLINQ(collection))
                 result += item.ToString();
@@ -359,14 +359,14 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void MaxFirstPartLINQ() //поиск паксимального значения точности
+        public void MaxFirstPartLINQ() //РїРѕРёСЃРє РїР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ С‚РѕС‡РЅРѕСЃС‚Рё
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
             int ac = 120;
             for (int key = 1; key < 4; key++)
             {
-                foreach (object item in collection[$"{key} магазин"])
+                foreach (object item in collection[$"{key} РјР°РіР°Р·РёРЅ"])
                 {
                     if (item is MeasuringTool)
                     {
@@ -380,14 +380,14 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void GroupByFirstPart_LINQ() //группировка элементов по точности 
+        public void GroupByFirstPart_LINQ() //РіСЂСѓРїРїРёСЂРѕРІРєР° СЌР»РµРјРµРЅС‚РѕРІ РїРѕ С‚РѕС‡РЅРѕСЃС‚Рё 
         {
             SortedDictionary<string, Queue<object>> collection = new SortedDictionary<string, Queue<object>>();
             Lab_14.Program.CreateInstrumentShop_FirstPart_ForTests(ref collection);
-            MeasuringTool toolToChange = new MeasuringTool(1, "Лобзик", "Дерево", "Градусы", 5);
+            MeasuringTool toolToChange = new MeasuringTool(1, "Р›РѕР±Р·РёРє", "Р”РµСЂРµРІРѕ", "Р“СЂР°РґСѓСЃС‹", 5);
             for (int key = 1; key < 4; key++)
             {
-                foreach (object item in collection[$"{key} магазин"])
+                foreach (object item in collection[$"{key} РјР°РіР°Р·РёРЅ"])
                 {
                     if (item is MeasuringTool)
                     {
@@ -407,10 +407,10 @@ namespace Lab13_Test
             }
         }
 
-        ////втаря часть
-        ////методы расширения 
+        ////РІС‚Р°СЂСЏ С‡Р°СЃС‚СЊ
+        ////РјРµС‚РѕРґС‹ СЂР°СЃС€РёСЂРµРЅРёСЏ 
         [TestMethod]
-        public void WhereSecondPart() //поиск всех инструментов, название которых состоят из нескольких слов 
+        public void WhereSecondPart() //РїРѕРёСЃРє РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ, РЅР°Р·РІР°РЅРёРµ РєРѕС‚РѕСЂС‹С… СЃРѕСЃС‚РѕСЏС‚ РёР· РЅРµСЃРєРѕР»СЊРєРёС… СЃР»РѕРІ 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 25);
             var consoleOutput = Lab_14.Program.WhereSecondPart(collection);
@@ -427,34 +427,34 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void CountSecondPart() //подсчет количества вхождений инструментов в указанным именем 
+        public void CountSecondPart() //РїРѕРґСЃС‡РµС‚ РєРѕР»РёС‡РµСЃС‚РІР° РІС…РѕР¶РґРµРЅРёР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 90);
             int Count = 0;
-            collection[12].Name = "Линейка";
+            collection[12].Name = "Р›РёРЅРµР№РєР°";
             foreach (MeasuringTool item in collection)
             {
-                if (item.Name == "Линейка")
+                if (item.Name == "Р›РёРЅРµР№РєР°")
                     Count += 1;
             }
             Lab_14.Program.EmptyMyCollectionException(collection);
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.CountSecondPart(collection, "Линейка"), Count);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.CountSecondPart(collection, "Р›РёРЅРµР№РєР°"), Count);
         }
 
         [TestMethod]
-        public void CountSecondPart_Exception() //исключение если инструментов с указанным именем не обнаружено
+        public void CountSecondPart_Exception() //РёСЃРєР»СЋС‡РµРЅРёРµ РµСЃР»Рё РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 1);
             int Count = 0;
-            collection[0].Name = "Л";
+            collection[0].Name = "Р›";
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.CountSecondPart(collection, "Линейка");        
+                Lab_14.Program.CountSecondPart(collection, "Р›РёРЅРµР№РєР°");        
             });
         }
 
         [TestMethod]
-        public void MaxSecondPart() //поиск инструмента с максимальной точностью 
+        public void MaxSecondPart() //РїРѕРёСЃРє РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° СЃ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ С‚РѕС‡РЅРѕСЃС‚СЊСЋ 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 10);
             double max = 0;
@@ -464,38 +464,38 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void GroupSecondPart() //группировка по точности 
+        public void GroupSecondPart() //РіСЂСѓРїРїРёСЂРѕРІРєР° РїРѕ С‚РѕС‡РЅРѕСЃС‚Рё 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 3);
-            collection[0] = new MeasuringTool(12, "Молоток", "Ь", "Градусы", 1.0);
-            collection[1] = new MeasuringTool(12, "Молоток", "Ь", "Градусы", 2.0);
-            collection[2] = new MeasuringTool(12, "Болгарка", "Ь", "Градусы", 1.0);
+            collection[0] = new MeasuringTool(12, "РњРѕР»РѕС‚РѕРє", "Р¬", "Р“СЂР°РґСѓСЃС‹", 1.0);
+            collection[1] = new MeasuringTool(12, "РњРѕР»РѕС‚РѕРє", "Р¬", "Р“СЂР°РґСѓСЃС‹", 2.0);
+            collection[2] = new MeasuringTool(12, "Р‘РѕР»РіР°СЂРєР°", "Р¬", "Р“СЂР°РґСѓСЃС‹", 1.0);
             var groupedData = Lab_14.Program.GroupSecondPart(collection);
 
             // Assert
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNotNull(groupedData); // Проверяем, что результат не равен null
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNotNull(groupedData); // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЂРµР·СѓР»СЊС‚Р°С‚ РЅРµ СЂР°РІРµРЅ null
 
             foreach (var group in groupedData)
             {
-                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(group.Count() > 0); // Проверяем, что в каждой группе есть элементы
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(group.Count() > 0); // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РІ РєР°Р¶РґРѕР№ РіСЂСѓРїРїРµ РµСЃС‚СЊ СЌР»РµРјРµРЅС‚С‹
             }
         }
 
         [TestMethod]
-        public void FindItem_2Part_sByAccuracy() //поиск инструментов по указанной точности
+        public void FindItem_2Part_sByAccuracy() //РїРѕРёСЃРє РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РїРѕ СѓРєР°Р·Р°РЅРЅРѕР№ С‚РѕС‡РЅРѕСЃС‚Рё
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 1);
-            collection[0] = new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1);
-            collection.Add(new MeasuringTool(13, "Пила", "Металл", "Сантиметры", 0.1));
-            collection.Add(new MeasuringTool(16, "Пила", "Металл", "Сантиметры", 1));
+            collection[0] = new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1);
+            collection.Add(new MeasuringTool(13, "РџРёР»Р°", "РњРµС‚Р°Р»Р»", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 0.1));
+            collection.Add(new MeasuringTool(16, "РџРёР»Р°", "РњРµС‚Р°Р»Р»", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1));
             var result = Lab_14.Program.FindItemsByMaxValue(collection, 1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: РџРёР»Р°, РјР°С‚РµСЂРёР°Р» Р”РµСЂРµРІРѕ, РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ РЎР°РЅС‚РёРјРµС‚СЂС‹, С‚РѕС‡РЅРѕСЃС‚СЊ 1"));
         }
 
-        //LINQ-запросы
+        //LINQ-Р·Р°РїСЂРѕСЃС‹
         [TestMethod]
-        public void WhereSecondPartLINQ() //поиск всех инструментов, название которых состоят из нескольких слов
+        public void WhereSecondPartLINQ() //РїРѕРёСЃРє РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ, РЅР°Р·РІР°РЅРёРµ РєРѕС‚РѕСЂС‹С… СЃРѕСЃС‚РѕСЏС‚ РёР· РЅРµСЃРєРѕР»СЊРєРёС… СЃР»РѕРІ
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 25);
             var consoleOutput = Lab_14.Program.WhereSecondPart(collection);
@@ -512,30 +512,30 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void CountSecondPartLINQ() //поиск количества вхождений инструментов в указанным именем 
+        public void CountSecondPartLINQ() //РїРѕРёСЃРє РєРѕР»РёС‡РµСЃС‚РІР° РІС…РѕР¶РґРµРЅРёР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 90);
             int Count = 0;
             foreach (MeasuringTool item in collection)
             {
-                if (item.Name == "Линейка")
+                if (item.Name == "Р›РёРЅРµР№РєР°")
                     Count += 1;
             }
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.CountSecondPartLINQ(collection, "Линейка"), Count);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.CountSecondPartLINQ(collection, "Р›РёРЅРµР№РєР°"), Count);
         }
 
         [TestMethod]
-        public void CountSecondPartLINQ_Exception() //исключение если инструментов с указанным именем не обнаружено 
+        public void CountSecondPartLINQ_Exception() //РёСЃРєР»СЋС‡РµРЅРёРµ РµСЃР»Рё РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 1);
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.CountSecondPartLINQ(collection, "Л");
+                Lab_14.Program.CountSecondPartLINQ(collection, "Р›");
             });
         }
 
         [TestMethod]
-        public void MaxSecondPartLINQ() //поиск инструмента с максимальной точностью 
+        public void MaxSecondPartLINQ() //РїРѕРёСЃРє РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° СЃ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ С‚РѕС‡РЅРѕСЃС‚СЊСЋ 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 10);
             double max = 0;
@@ -545,12 +545,12 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void MaxSecondPartLINQ_Exception() //исключение при отсутствии измерительных инструментов в коллекции 
+        public void MaxSecondPartLINQ_Exception() //РёСЃРєР»СЋС‡РµРЅРёРµ РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё РёР·РјРµСЂРёС‚РµР»СЊРЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ РєРѕР»Р»РµРєС†РёРё 
         {
             var collection = new SortedDictionary<string, Queue<object>>
         {
-            { "2", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
-            { "3", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
+            { "2", new Queue<object>(new object[] { new HandTool(12, "Р‘РѕР»РіР°СЂРєР°", "РњРµС‚Р°Р»Р»"), new HandTool(15, "Р›РѕР±Р·РёРє", "Р–РµР»РµР·Рѕ") }) },
+            { "3", new Queue<object>(new object[] { new Instrument("Р¦РёСЂРєСѓР»СЊ", 111), new Instrument("РћС‚РІРµСЂС‚РєР°", 45) }) }
         }; 
 
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
@@ -560,61 +560,61 @@ namespace Lab13_Test
         }
 
         [TestMethod]
-        public void GroupSecondPartLINQ() //группировка по точности
+        public void GroupSecondPartLINQ() //РіСЂСѓРїРїРёСЂРѕРІРєР° РїРѕ С‚РѕС‡РЅРѕСЃС‚Рё
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 1);
             collection.Remove(collection[0]);
-            collection.Add(new MeasuringTool(12, "Молоток", "Ь", "Градусы", 1.0));
-            collection.Add(new MeasuringTool(12, "Молоток", "Ь", "Градусы", 2.0));
-            collection.Add(new MeasuringTool(12, "Болгарка", "Ь", "Градусы", 1.0));
+            collection.Add(new MeasuringTool(12, "РњРѕР»РѕС‚РѕРє", "Р¬", "Р“СЂР°РґСѓСЃС‹", 1.0));
+            collection.Add(new MeasuringTool(12, "РњРѕР»РѕС‚РѕРє", "Р¬", "Р“СЂР°РґСѓСЃС‹", 2.0));
+            collection.Add(new MeasuringTool(12, "Р‘РѕР»РіР°СЂРєР°", "Р¬", "Р“СЂР°РґСѓСЃС‹", 1.0));
             var groupedData = Lab_14.Program.GroupSecondPartLINQ(collection);
 
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintGroups(Lab_14.Program.GroupSecondPartLINQ(collection)); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("Группа с точностью 1. Количество иструментов в группе: 2"));
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("Группа с точностью 2. Количество иструментов в группе: 1"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("Р“СЂСѓРїРїР° СЃ С‚РѕС‡РЅРѕСЃС‚СЊСЋ 1. РљРѕР»РёС‡РµСЃС‚РІРѕ РёСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ РіСЂСѓРїРїРµ: 2"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("Р“СЂСѓРїРїР° СЃ С‚РѕС‡РЅРѕСЃС‚СЊСЋ 2. РљРѕР»РёС‡РµСЃС‚РІРѕ РёСЃС‚СЂСѓРјРµРЅС‚РѕРІ РІ РіСЂСѓРїРїРµ: 1"));
         }
 
         [TestMethod]
         public void FindItem_2Part_sByAccuracyLINQ()  
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 1);
-            collection[0] = new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1);
+            collection[0] = new MeasuringTool(1, "РџРёР»Р°", "Р”РµСЂРµРІРѕ", "РЎР°РЅС‚РёРјРµС‚СЂС‹", 1);
             var result = Lab_14.Program.FindValue_2Part_ByAccuracy_LINQ(collection, 1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: РџРёР»Р°, РјР°С‚РµСЂРёР°Р» Р”РµСЂРµРІРѕ, РµРґРёРЅРёС†С‹ РёР·РјРµСЂРµРЅРёСЏ РЎР°РЅС‚РёРјРµС‚СЂС‹, С‚РѕС‡РЅРѕСЃС‚СЊ 1"));
         }
 
         [TestClass]
         public class Test_Lab13
         {
-            //тестирование конструкторов
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРІ
             [TestMethod]
-            public void Test_ConstuctorWithoutParams() //тест проверка на создание пустого объекта MyCollection
+            public void Test_ConstuctorWithoutParams() //С‚РµСЃС‚ РїСЂРѕРІРµСЂРєР° РЅР° СЃРѕР·РґР°РЅРёРµ РїСѓСЃС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° MyCollection
             {
                 MyCollection<Instrument> collection = new MyCollection<Instrument>();
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(0, collection.Count);
             }
 
             [TestMethod]
-            public void Test_ConstuctorOnlyName() //тест проверка на создание пустого объекта MyCollection
+            public void Test_ConstuctorOnlyName() //С‚РµСЃС‚ РїСЂРѕРІРµСЂРєР° РЅР° СЃРѕР·РґР°РЅРёРµ РїСѓСЃС‚РѕРіРѕ РѕР±СЉРµРєС‚Р° MyCollection
             {
                 MyCollection<Instrument> collection = new MyCollection<Instrument>("r");
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual("r", collection.NameOfCollection);
             }
 
             [TestMethod]
-            public void Test_Constructor_Length() //проверка конструктора, формаирующего коллекцию по ее длине
+            public void Test_Constructor_Length() //РїСЂРѕРІРµСЂРєР° РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°, С„РѕСЂРјР°РёСЂСѓСЋС‰РµРіРѕ РєРѕР»Р»РµРєС†РёСЋ РїРѕ РµРµ РґР»РёРЅРµ
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию с помощью ввода ее длины
-                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.Count, 5); //проверяем чтобы коллекция содержала 5 элементов
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ СЃ РїРѕРјРѕС‰СЊСЋ РІРІРѕРґР° РµРµ РґР»РёРЅС‹
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.Count, 5); //РїСЂРѕРІРµСЂСЏРµРј С‡С‚РѕР±С‹ РєРѕР»Р»РµРєС†РёСЏ СЃРѕРґРµСЂР¶Р°Р»Р° 5 СЌР»РµРјРµРЅС‚РѕРІ
             }
-            //тестирование конструкторов завершено
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРІ Р·Р°РІРµСЂС€РµРЅРѕ
 
-            //тестирование нумератора
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РЅСѓРјРµСЂР°С‚РѕСЂР°
             [TestMethod]
-            public void GetEnumerator_WhenCollectionHasItems_ShouldEnumerateAllItems() //нумератор для коллекции 
+            public void GetEnumerator_WhenCollectionHasItems_ShouldEnumerateAllItems() //РЅСѓРјРµСЂР°С‚РѕСЂ РґР»СЏ РєРѕР»Р»РµРєС†РёРё 
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 1); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 1); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument tool1 = new Instrument("Q", 1);
                 Instrument tool2 = new Instrument("W", 12);
                 Instrument tool3 = new Instrument("E", 123);
@@ -636,9 +636,9 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void GetEnumerator_CollectionHasRemovedElement() //нумератор для коллекции с удаленным элементом
+            public void GetEnumerator_CollectionHasRemovedElement() //РЅСѓРјРµСЂР°С‚РѕСЂ РґР»СЏ РєРѕР»Р»РµРєС†РёРё СЃ СѓРґР°Р»РµРЅРЅС‹Рј СЌР»РµРјРµРЅС‚РѕРј
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 1); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 1); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument tool1 = new Instrument("Q", 1);
                 Instrument tool2 = new Instrument("W", 12);
                 Instrument tool3 = new Instrument("E", 123);
@@ -661,13 +661,13 @@ namespace Lab13_Test
 
                 CollectionAssert.AreEqual(new Instrument[] { tool1, tool3 }, result);
             }
-            //тестирование нумератора завершено
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РЅСѓРјРµСЂР°С‚РѕСЂР° Р·Р°РІРµСЂС€РµРЅРѕ
 
-            //тестирование ICollection
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ ICollection
             [TestMethod]
-            public void ICollection_CopyTo() // проверка CopyTo 
+            public void ICollection_CopyTo() // РїСЂРѕРІРµСЂРєР° CopyTo 
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument[] list = new Instrument[5];
                 collection.CopyTo(list, 0);
                 PointHash<Instrument> value = collection.GetFirstValue();
@@ -675,20 +675,20 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void ICollection_Count() //проверка счетчика элементов
+            public void ICollection_Count() //РїСЂРѕРІРµСЂРєР° СЃС‡РµС‚С‡РёРєР° СЌР»РµРјРµРЅС‚РѕРІ
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument[] list = new Instrument[5];
                 collection.CopyTo(list, 0);
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.Count, list.Length);
             }
-            //тестирование ICollection
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ ICollection
 
-            //блок Exception
+            //Р±Р»РѕРє Exception
             [TestMethod]
-            public void ICollection_CopyTo_ExceptionIndexOutsideOfListLength() //проверка исключения при некорректном вводе индекса при попытке скопирровать значения коллекции в массив
+            public void ICollection_CopyTo_ExceptionIndexOutsideOfListLength() //РїСЂРѕРІРµСЂРєР° РёСЃРєР»СЋС‡РµРЅРёСЏ РїСЂРё РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРј РІРІРѕРґРµ РёРЅРґРµРєСЃР° РїСЂРё РїРѕРїС‹С‚РєРµ СЃРєРѕРїРёСЂСЂРѕРІР°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ РєРѕР»Р»РµРєС†РёРё РІ РјР°СЃСЃРёРІ
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument[] list = new Instrument[5];
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
                 {
@@ -697,9 +697,9 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void ICollection_CopyTo_ExceptionNotEnoughListLength() //ошибка, когда не хватает места для всех элементов в массиве
+            public void ICollection_CopyTo_ExceptionNotEnoughListLength() //РѕС€РёР±РєР°, РєРѕРіРґР° РЅРµ С…РІР°С‚Р°РµС‚ РјРµСЃС‚Р° РґР»СЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РІ РјР°СЃСЃРёРІРµ
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument[] list = new Instrument[5];
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
                 {
@@ -708,7 +708,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestClear() //проверка очистки памяти
+            public void TestClear() //РїСЂРѕРІРµСЂРєР° РѕС‡РёСЃС‚РєРё РїР°РјСЏС‚Рё
             {
                 MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 6);
                 collection.Clear();
@@ -716,7 +716,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestAdd() //проврека добавления элемента
+            public void TestAdd() //РїСЂРѕРІСЂРµРєР° РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р°
             {
                 MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 1);
                 Instrument t = new Instrument();
@@ -725,10 +725,10 @@ namespace Lab13_Test
 
             }
 
-            //ТЕСТЫ ИЗ ВТОРОЙ ЧАСТИ ДЛЯ ПОКРЫТИЯ КЛАССОВ ХЕШ-ТАБЛИЦЫ
-            //блок Exception
+            //РўР•РЎРўР« РР— Р’РўРћР РћР™ Р§РђРЎРўР Р”Р›РЇ РџРћРљР Р«РўРРЇ РљР›РђРЎРЎРћР’ РҐР•РЁ-РўРђР‘Р›РР¦Р«
+            //Р±Р»РѕРє Exception
             [TestMethod]
-            public void Test_CreateTable_Exception() //тестирование ошибки при попытке формирования пустой таблицы
+            public void Test_CreateTable_Exception() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС€РёР±РєРё РїСЂРё РїРѕРїС‹С‚РєРµ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїСѓСЃС‚РѕР№ С‚Р°Р±Р»РёС†С‹
             {
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
                 {
@@ -737,7 +737,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void Test_AddExistingElement_Exception() //тестирование ошибки при попытке формирования пустой таблицы
+            public void Test_AddExistingElement_Exception() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС€РёР±РєРё РїСЂРё РїРѕРїС‹С‚РєРµ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїСѓСЃС‚РѕР№ С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
                 Instrument tool = new Instrument("q", 1);
@@ -749,25 +749,25 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void Test_PrintNullTable_Exception() //тестирование ошибки при попытке печати пустой таблицы
+            public void Test_PrintNullTable_Exception() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС€РёР±РєРё РїСЂРё РїРѕРїС‹С‚РєРµ РїРµС‡Р°С‚Рё РїСѓСЃС‚РѕР№ С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>();
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
                 {
                     table.Print();
                 });
-            }//блок Exception закончен
+            }//Р±Р»РѕРє Exception Р·Р°РєРѕРЅС‡РµРЅ
 
             [TestMethod]
-            public void TestCreateTable() //тестирование конструктора для создания хеш-таблицы
+            public void TestCreateTable() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С…РµС€-С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(5);
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(table.Capacity, 5);
             }
 
-            //тестривание AddPoint
+            //С‚РµСЃС‚СЂРёРІР°РЅРёРµ AddPoint
             [TestMethod]
-            public void TestAddPointToHashTable() //тестирование добавления элемента в таблицу
+            public void TestAddPointToHashTable() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ С‚Р°Р±Р»РёС†Сѓ
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(5);
                 HandTool tool = new HandTool();
@@ -776,7 +776,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestAddCount() //тестирование увеличения Count после добавления элемента в таблицу
+            public void TestAddCount() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СѓРІРµР»РёС‡РµРЅРёСЏ Count РїРѕСЃР»Рµ РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ С‚Р°Р±Р»РёС†Сѓ
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(5);
                 HandTool tool = new HandTool();
@@ -784,9 +784,9 @@ namespace Lab13_Test
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(6, table.Count);
             }
 
-            //тестиование удаления элемента из таблицы
+            //С‚РµСЃС‚РёРѕРІР°РЅРёРµ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· С‚Р°Р±Р»РёС†С‹
             [TestMethod]
-            public void TestRemovePointFromHashTableTrue() //тестирование добавления удаления существующего элемента из таблицы
+            public void TestRemovePointFromHashTableTrue() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РґРѕР±Р°РІР»РµРЅРёСЏ СѓРґР°Р»РµРЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° РёР· С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
                 HandTool tool = new HandTool();
@@ -796,7 +796,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestRemovePointFromHashTable_False() //тестирование удаления несуществующего элемента из таблицы
+            public void TestRemovePointFromHashTable_False() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СѓРґР°Р»РµРЅРёСЏ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° РёР· С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
                 HandTool tool = new HandTool();
@@ -806,20 +806,20 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestRemovePointFromHashTable_OutOfKey_False() //тестирование удаления несуществующего элемента из таблицы
+            public void TestRemovePointFromHashTable_OutOfKey_False() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СѓРґР°Р»РµРЅРёСЏ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° РёР· С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
-                Instrument tool = new Instrument("Бензопила дружба нового поколения", 9999);
+                Instrument tool = new Instrument("Р‘РµРЅР·РѕРїРёР»Р° РґСЂСѓР¶Р±Р° РЅРѕРІРѕРіРѕ РїРѕРєРѕР»РµРЅРёСЏ", 9999);
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsFalse(table.RemoveData(tool));
             }
 
             [TestMethod]
-            public void TestRemovePoint_FromBeginingOfTableTable() //тестирование удаления первого в цепочке элемента из таблицы
+            public void TestRemovePoint_FromBeginingOfTableTable() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СѓРґР°Р»РµРЅРёСЏ РїРµСЂРІРѕРіРѕ РІ С†РµРїРѕС‡РєРµ СЌР»РµРјРµРЅС‚Р° РёР· С‚Р°Р±Р»РёС†С‹
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
-                Instrument tool2 = new Instrument("Перфоратор", 98);
-                Instrument tool3 = new Instrument("Штангенциркуль", 85);
-                Instrument tool4 = new Instrument("Микрометр", 41);
+                Instrument tool2 = new Instrument("РџРµСЂС„РѕСЂР°С‚РѕСЂ", 98);
+                Instrument tool3 = new Instrument("РЁС‚Р°РЅРіРµРЅС†РёСЂРєСѓР»СЊ", 85);
+                Instrument tool4 = new Instrument("РњРёРєСЂРѕРјРµС‚СЂ", 41);
                 Instrument tool5 = new Instrument("RRR", 1234);
                 Instrument tool6 = new Instrument("RRR", 1235);
 
@@ -837,7 +837,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void MyCollection_IndexOf_Exceptin() //проверка исключения при попытке получить индекс несуществующего в коллекции элемента
+            public void MyCollection_IndexOf_Exceptin() //РїСЂРѕРІРµСЂРєР° РёСЃРєР»СЋС‡РµРЅРёСЏ РїСЂРё РїРѕРїС‹С‚РєРµ РїРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РІ РєРѕР»Р»РµРєС†РёРё СЌР»РµРјРµРЅС‚Р°
             {
                 MyCollection<Instrument> col = new MyCollection<Instrument>("q", 2);
                 Instrument tool = new Instrument();
@@ -847,9 +847,9 @@ namespace Lab13_Test
                 });
             }
 
-            //тестирование метода Contains
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РјРµС‚РѕРґР° Contains
             [TestMethod]
-            public void TestContainsPointTrue() //метод Contains когда элемент есть в таблице
+            public void TestContainsPointTrue() //РјРµС‚РѕРґ Contains РєРѕРіРґР° СЌР»РµРјРµРЅС‚ РµСЃС‚СЊ РІ С‚Р°Р±Р»РёС†Рµ
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
                 HandTool tool = new HandTool();
@@ -858,16 +858,16 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestContainsPointFalse() //когда элемента нет в таблице
+            public void TestContainsPointFalse() //РєРѕРіРґР° СЌР»РµРјРµРЅС‚Р° РЅРµС‚ РІ С‚Р°Р±Р»РёС†Рµ
             {
                 MyHashTable<Library_10.Instrument> table = new MyHashTable<Library_10.Instrument>(1);
                 HandTool tool = new HandTool();
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsFalse(table.Contains(tool));
             }
 
-            //тестирование ToString для PointHash
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ ToString РґР»СЏ PointHash
             [TestMethod]
-            public void TestToStringPoint() //тестирование ToString для класса узла
+            public void TestToStringPoint() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ ToString РґР»СЏ РєР»Р°СЃСЃР° СѓР·Р»Р°
             {
                 HandTool tool = new HandTool();
                 PointHash<Library_10.Instrument> p = new PointHash<Library_10.Instrument>(tool);
@@ -875,22 +875,22 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestConstructWhithoutParamNext() //конструктор узла без параметров, Next = null
+            public void TestConstructWhithoutParamNext() //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СѓР·Р»Р° Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ, Next = null
             {
                 PointHash<Instrument> p = new PointHash<Instrument>();
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNull(p.Next);
             }
 
             [TestMethod]
-            public void TestConstructWhithoutParamPred() //конструктор узла без параметров, Pred = null
+            public void TestConstructWhithoutParamPred() //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СѓР·Р»Р° Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ, Pred = null
             {
                 PointHash<Instrument> p = new PointHash<Instrument>();
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNull(p.Pred);
             }
 
-            //тестирование методов ToString и GetHashCode для класса PointHash
+            //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РјРµС‚РѕРґРѕРІ ToString Рё GetHashCode РґР»СЏ РєР»Р°СЃСЃР° PointHash
             [TestMethod]
-            public void ToString_WhenDataIsNull_ReturnEmptyString() //конструктор без параметров метод ToString
+            public void ToString_WhenDataIsNull_ReturnEmptyString() //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ РјРµС‚РѕРґ ToString
             {
                 PointHash<Instrument> point = new PointHash<Library_10.Instrument>();
                 string result = point.ToString();
@@ -908,7 +908,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void GetHashCode_WhenDataIsNull_ReturnZero() //тестирование GetHashCode для узла, созданного с помощью конструктора без параметров
+            public void GetHashCode_WhenDataIsNull_ReturnZero() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ GetHashCode РґР»СЏ СѓР·Р»Р°, СЃРѕР·РґР°РЅРЅРѕРіРѕ СЃ РїРѕРјРѕС‰СЊСЋ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
             {
                 PointHash<Instrument> point = new PointHash<Library_10.Instrument>();
                 int result = point.GetHashCode();
@@ -916,7 +916,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void GetHashCode_WhenDataIsNotNull_ReturnDataHashCode() //тестиование GetHashCode для заполненного узла
+            public void GetHashCode_WhenDataIsNotNull_ReturnDataHashCode() //С‚РµСЃС‚РёРѕРІР°РЅРёРµ GetHashCode РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРЅРѕРіРѕ СѓР·Р»Р°
             {
                 Library_10.Instrument tool = new Instrument();
                 tool.RandomInit();
@@ -926,7 +926,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void CopyTo() //тестиование GetHashCode для заполненного узла
+            public void CopyTo() //С‚РµСЃС‚РёРѕРІР°РЅРёРµ GetHashCode РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРЅРѕРіРѕ СѓР·Р»Р°
             {
                 MyCollection<Instrument> col = new MyCollection<Instrument>("w", 6);
                 MyCollection<Instrument> col2 = new MyCollection<Instrument>("w", col);
@@ -935,7 +935,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void CopyTo_Default() //тестиование GetHashCode для заполненного узла
+            public void CopyTo_Default() //С‚РµСЃС‚РёРѕРІР°РЅРёРµ GetHashCode РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРЅРѕРіРѕ СѓР·Р»Р°
             {
                 MyCollection<Instrument> col = new MyCollection<Instrument>("w", 1);
                 Instrument[] arr = new Instrument[3];
@@ -947,7 +947,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void CopyToCount() //тестиование GetHashCode для заполненного узла
+            public void CopyToCount() //С‚РµСЃС‚РёРѕРІР°РЅРёРµ GetHashCode РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРЅРѕРіРѕ СѓР·Р»Р°
             {
                 MyCollection<Instrument> col = new MyCollection<Instrument>("w", 6);
                 MyCollection<Instrument> col2 = new MyCollection<Instrument>("w", col);
@@ -956,15 +956,15 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void Remove_OneElementInChain() //тестиование GetHashCode для заполненного узла
+            public void Remove_OneElementInChain() //С‚РµСЃС‚РёРѕРІР°РЅРёРµ GetHashCode РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРЅРѕРіРѕ СѓР·Р»Р°
             {
                 MyCollection<HandTool> col = new MyCollection<HandTool>("w", 1);
                 PointHash<HandTool> tool = col.GetFirstValue();
                 col.Remove(tool.Data);
-                HandTool tool1 = new HandTool(82, "Штангенциркуль", "Алюминий");
-                HandTool tool2 = new HandTool(12, "Штангенциркуль", "Медь");
-                HandTool tool3 = new HandTool(30, "Углометр", "Резина");
-                HandTool tool4 = new HandTool(53, "Кусачки", "Конструкционная сталь");
+                HandTool tool1 = new HandTool(82, "РЁС‚Р°РЅРіРµРЅС†РёСЂРєСѓР»СЊ", "РђР»СЋРјРёРЅРёР№");
+                HandTool tool2 = new HandTool(12, "РЁС‚Р°РЅРіРµРЅС†РёСЂРєСѓР»СЊ", "РњРµРґСЊ");
+                HandTool tool3 = new HandTool(30, "РЈРіР»РѕРјРµС‚СЂ", "Р РµР·РёРЅР°");
+                HandTool tool4 = new HandTool(53, "РљСѓСЃР°С‡РєРё", "РљРѕРЅСЃС‚СЂСѓРєС†РёРѕРЅРЅР°СЏ СЃС‚Р°Р»СЊ");
 
                 col.Add(tool1);
                 col.Add(tool2);
@@ -976,7 +976,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestIndexGet() //тестирование get индексатора
+            public void TestIndexGet() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ get РёРЅРґРµРєСЃР°С‚РѕСЂР°
             {
                 MyCollection<HandTool> col = new MyCollection<HandTool>("w", 1);
                 HandTool tool = col.GetFirstValue().Data;
@@ -984,9 +984,9 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestIndexGet_Exception() //тестирование исключение при get индексатора
+            public void TestIndexGet_Exception() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РёСЃРєР»СЋС‡РµРЅРёРµ РїСЂРё get РёРЅРґРµРєСЃР°С‚РѕСЂР°
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument[] list = new Instrument[5];
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
                 {
@@ -995,9 +995,9 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestIndexSet_Exception() //тестирование исключения в set 
+            public void TestIndexSet_Exception() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РёСЃРєР»СЋС‡РµРЅРёСЏ РІ set 
             {
-                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //создаем коллекцию и заполняем ее элементами
+                MyCollection<Instrument> collection = new MyCollection<Instrument>("w", 5); //СЃРѕР·РґР°РµРј РєРѕР»Р»РµРєС†РёСЋ Рё Р·Р°РїРѕР»РЅСЏРµРј РµРµ СЌР»РµРјРµРЅС‚Р°РјРё
                 Instrument[] list = new Instrument[5];
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
                 {
@@ -1006,7 +1006,7 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void TestIndexSet() //тестиование set 
+            public void TestIndexSet() //С‚РµСЃС‚РёРѕРІР°РЅРёРµ set 
             {
                 MyCollection<HandTool> col = new MyCollection<HandTool>("w", 1);
                 HandTool tool = col.GetFirstValue().Data;
@@ -1015,14 +1015,14 @@ namespace Lab13_Test
             }
 
             [TestMethod]
-            public void IsReadOnly_MyCollection() //тестирование свойства IsReadOnly в MyCollection
+            public void IsReadOnly_MyCollection() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СЃРІРѕР№СЃС‚РІР° IsReadOnly РІ MyCollection
             {
                 MyCollection<HandTool> col = new MyCollection<HandTool>("w", 1);
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsFalse(col.IsReadOnly);
             }
 
             [TestMethod]
-            public void Count_MyCollection() //тестирование кол-ва элементов в MyCollection
+            public void Count_MyCollection() //С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ РєРѕР»-РІР° СЌР»РµРјРµРЅС‚РѕРІ РІ MyCollection
             {
                 MyCollection<HandTool> col = new MyCollection<HandTool>("w", 6);
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(col.Count, 6);
