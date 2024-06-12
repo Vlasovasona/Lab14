@@ -1,0 +1,46 @@
+using Library_10;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab_14
+{
+    public static class MyCollectionExtention
+    {
+        public static IEnumerable<object> FindItemsByMaxValue(this MyCollection<MeasuringTool> collection, double accuracy) //метод для нахождения элементов в коллекции с максимальной точностью
+        {
+            var items = collection.Where(x => ((MeasuringTool)x).accuracy == accuracy);
+            Program.IEnumerableException(items);
+            return items;
+        }
+
+        public static IEnumerable<object> WhereSecondPart(this MyCollection<MeasuringTool> collection2) //метод для нахождения тех элементов, названия которых состоят из нескольких слов
+        {
+            var subset2 = collection2.Where(x => x.Name.Contains(" ")).OrderBy(x => x);
+            Program.IEnumerableException(subset2);
+            return subset2;
+        }
+
+        public static int CountSecondPart(this MyCollection<MeasuringTool> collection2, string nameOfTool) //метод для нахождения количества элементов коллекции с именем nameOfTool
+        {
+            int result = collection2.Count(x => x.Name == nameOfTool);
+            if (result == 0) throw new Exception($"Элементов с названием {nameOfTool} ы коллекции не найдено");
+            return result;
+        }
+
+        public static double MaxSecondPart(this MyCollection<MeasuringTool> collection2) //метод для нахождния максимальной точности
+        {
+            return collection2.Max(x => x.Accuracy);
+        }
+
+        public static IEnumerable<IGrouping<double, MeasuringTool>> GroupSecondPart(this MyCollection<MeasuringTool> collection2) //метод для группировки по возрастаниюточности измерительного инструмента
+        {
+            var groupedData = collection2.OrderBy(x => x.Accuracy)
+                              .GroupBy(x => x.Accuracy);
+            Program.IGroupingException(groupedData);
+            return groupedData;
+        }
+    }
+}
