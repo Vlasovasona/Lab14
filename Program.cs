@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Diagnostics.Metrics;
 using Library_10;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace Lab_14
 {
     public class Program
     {
-        //методля для печати
+        //мето для для печати
         public static void PrintIEnumerableResult(IEnumerable<object> result) //вывод элементов типа IEnumerable 
         { 
             foreach (object item in result)
@@ -213,115 +213,6 @@ namespace Lab_14
             Console.WriteLine("\nЭлементы выведены");
         }
 
-        //методы расширения для первой части
-
-        public static IEnumerable<object> Join_FirstPart(SortedDictionary<string, Queue<object>> collection, List<AccuracyToMeasuringTool> list) //метод для объединения измерительных инструментов с объектами класса AccuracyToMeasuringTool
-        {
-            var result = collection.Values
-                      .SelectMany(item => item)
-                      .Where(tool => tool is MeasuringTool)
-                      .Join(list,
-                            tool => ((MeasuringTool)tool).accuracy,
-                            t => t.Accuracy,
-                            (tool, t) => new
-                            {
-                                Name = ((MeasuringTool)tool).Name,
-                                Material = ((MeasuringTool)tool).material,
-                                Accuracy = ((MeasuringTool)tool).accuracy,
-                                Units = ((MeasuringTool)tool).units,
-                                ClassOfAccuracy = t.ClassOfAccuracy
-                            });
-            IEnumerableException(result);
-            return result;
-        }
-
-        public static List<object> FindItemsByAccuracy(SortedDictionary<string, Queue<object>> dictionary, double accuracy) //метод для выборки элементов по значению accuracy
-        {
-            List<object> items = new List<object>();
-
-            foreach (var item in dictionary.Values.SelectMany(x => x).Where(x => x is MeasuringTool && ((MeasuringTool)x).accuracy == accuracy))
-            {
-                items.Add(item);
-            }
-            return items;
-        }
-
-        public static List<HandTool> WhereHandToolFirstPart(SortedDictionary<string, Queue<object>> collection) //метод для нахождения всех ручных инструментов в коллекции
-        {
-            var handTools = collection
-                .SelectMany(pair => pair.Value.OfType<HandTool>())
-                .ToList();
-            IEnumerableException(handTools);
-            return handTools;
-        }
-
-        public static IEnumerable<object> UnionFirstPart(SortedDictionary<string, Queue<object>> collection) //метод для нахождения одинаковых элементов среди магазинов
-        {
-            if (collection.Count() < 2) throw new Exception("Не хватает магазинов для слияния");
-            var inter = collection["1 магазин"].Union(collection["2 магазин"]);
-            IEnumerableException(inter);
-            return inter;
-        }
-
-        public static double MaxFirstPart(SortedDictionary<string, Queue<object>> collection) //метод для поиска максимальной точности измерительного инструмента
-        {
-            if (collection.Values.SelectMany(q => q).All(obj => !(obj is MeasuringTool)))
-            {
-                throw new Exception("В коллекции нет измерительных инструментов");
-            }
-            double maxAccuracy = collection
-                .SelectMany(pair => pair.Value.OfType<MeasuringTool>())
-                .ToList()
-                .Max(x => x.accuracy);
-            return maxAccuracy;
-        }
-
-        public static IEnumerable<IGrouping<double, MeasuringTool>> GroupByFirstPart(SortedDictionary<string, Queue<object>> collection) //метод для группировки по возрастанию точности
-        {
-            var sortId = collection
-                .SelectMany(pair => pair.Value.OfType<MeasuringTool>())
-                .GroupBy(x => x.accuracy)
-                .OrderBy(g => g.Key);
-            IGroupingException(sortId);
-            return sortId;
-        }
-
-        //методы расширения для второй части
-
-        public static IEnumerable<object> FindItemsByMaxValue(MyCollection<MeasuringTool> collection, double accuracy) //метод для нахождения элементов в коллекции с максимальной точностью
-        {
-            var items = collection.Where(x => x is MeasuringTool && ((MeasuringTool)x).accuracy == accuracy);
-            IEnumerableException(items);
-            return items;
-        }
-
-        public static IEnumerable<object> WhereSecondPart(MyCollection<MeasuringTool> collection2) //метод для нахождения тех элементов, названия которых состоят из нескольких слов
-        {
-            var subset2 = collection2.Where(x => x.Name.Contains(" ")).OrderBy(x => x).Select(x => x);
-            IEnumerableException(subset2);
-            return subset2;
-        }
-
-        public static int CountSecondPart(MyCollection<MeasuringTool> collection2, string nameOfTool) //метод для нахождения количества элементов коллекции с именем nameOfTool
-        {
-            int result = collection2.Count(x => x.Name == nameOfTool);
-            if (result == 0) throw new Exception($"Элементов с названием {nameOfTool} ы коллекции не найдено");
-            return result;
-        }
-
-        public static double MaxSecondPart(MyCollection<MeasuringTool> collection2) //метод для нахождния максимальной точности
-        {
-            return collection2.Max(x => x.accuracy);
-        }
-
-        public static IEnumerable<IGrouping<double, MeasuringTool>> GroupSecondPart(MyCollection<MeasuringTool> collection2) //метод для группировки по возрастаниюточности измерительного инструмента
-        {
-            var groupedData = collection2.OrderBy(x => x.accuracy)
-                              .GroupBy(x => x.accuracy);
-            IGroupingException(groupedData);
-            return groupedData;
-        }
-
         //LINQ-запросы для первой части
 
         public static IEnumerable<object> JoinFirstCollection(SortedDictionary<string, Queue<object>> dictionary, List<AccuracyToMeasuringTool> acc) //метод для объединения измерительных инструментов со списком объектов класса AccuracyToMeasuringTool
@@ -466,7 +357,7 @@ namespace Lab_14
                                 Console.WriteLine("\n1. Сформировать сеть магазинов по продаже инструментов");
                                 Console.WriteLine("2. Вывод коллекции");
                                 Console.WriteLine("3. Выполнить запрос на выборку все ручных инструментов (Where)");
-                                Console.WriteLine("4. Добавить одинаковые элементы в два магазина и вывести их с помощью метода Intersect");
+                                Console.WriteLine("4. Вывести объединение двух магазинов с помощью метода Union");
                                 Console.WriteLine("5. Найти измерительный инструмент с максимальной точностью (Max, SelectMany, Where, дополнительный запрос)");
                                 Console.WriteLine("6. Группировка по возрастанию точности в измерительных инструментах (Group by, orderby, select)");
                                 Console.WriteLine("7. Объединение двух коллекций по одинаковому имени (join)");
@@ -511,7 +402,7 @@ namespace Lab_14
                                                 try
                                                 {
                                                     Console.WriteLine("\nДемонстрация метода расширения (пояснение: измерительные инструменты наследуются от ручных)\n");
-                                                    PrintIEnumerableResult(WhereHandToolFirstPart(collection));
+                                                    PrintIEnumerableResult(collection.WhereHandToolFirstPart());
                                                 }
                                                 catch (Exception e)
                                                 {
@@ -542,7 +433,7 @@ namespace Lab_14
                                                 try
                                                 {
                                                     Console.WriteLine("\nДемонстрация метода расширения\n");
-                                                    PrintIEnumerableResult(UnionFirstPart(collection));
+                                                    PrintIEnumerableResult(collection.UnionFirstPart());
                                                 }
                                                 catch (Exception e)
                                                 {
@@ -575,9 +466,9 @@ namespace Lab_14
                                                     try
                                                     {
                                                         Console.WriteLine("\nДемонстрация метода расширения\n");
-                                                        Console.WriteLine("Самая большая точность измерительного инструмента " + MaxFirstPart(collection));
-                                                        Console.WriteLine("Инструменты с " + MaxFirstPart(collection) + " точностью");
-                                                        PrintIEnumerableResult(FindItemsByAccuracy(collection, MaxFirstPart(collection)));
+                                                        Console.WriteLine("Самая большая точность измерительного инструмента " + collection.MaxFirstPart());
+                                                        Console.WriteLine("Инструменты с " + collection.MaxFirstPart() + " точностью");
+                                                        PrintIEnumerableResult(collection.FindItemsByAccuracy(collection.MaxFirstPart()));
                                                     }
                                                     catch (Exception e)
                                                     {
@@ -615,7 +506,7 @@ namespace Lab_14
                                                 try
                                                 {
                                                     Console.WriteLine("\nДемонстрация метода расширения\n");
-                                                    PrintGroups(GroupByFirstPart(collection));
+                                                    PrintGroups(collection.GroupByFirstPart());
                                                 }
                                                 catch (Exception e)
                                                 {
@@ -648,7 +539,7 @@ namespace Lab_14
                                                     try
                                                     {
                                                         Console.WriteLine("Демонстрация метода расширения");
-                                                        PrintIEnumerableResult(Join_FirstPart(collection, CreateNewList()));
+                                                        PrintIEnumerableResult(collection.Join_FirstPart(CreateNewList()));
                                                     }
                                                     catch (Exception e)
                                                     {
@@ -746,7 +637,7 @@ namespace Lab_14
                                                 try
                                                 {
                                                     Console.WriteLine("\nДемонстрация метода расширения\n");
-                                                    PrintIEnumerableResult(WhereSecondPart(collection2));
+                                                    PrintIEnumerableResult(collection2.WhereSecondPart());
                                                 }
                                                 catch (Exception e)
                                                 {
@@ -755,7 +646,7 @@ namespace Lab_14
                                                 try
                                                 {
                                                     Console.WriteLine("\nДемонстрация LINQ запроса\n");
-                                                    PrintIEnumerableResult(WhereSecondPart(collection2));
+                                                    PrintIEnumerableResult(WhereSecondPartLINQ(collection2));
                                                 }
                                                 catch (Exception e)
                                                 {
@@ -780,7 +671,7 @@ namespace Lab_14
                                                 {
                                                     Console.WriteLine("\nДемонстрация метода расширения\n");
 
-                                                    int count = CountSecondPart(collection2, inputName);
+                                                    int count = collection2.CountSecondPart(inputName);
                                                     Console.WriteLine("В коллекции " + count + " инструмента(-ов) с названием " + inputName);
                                                 }
                                                 catch (Exception e)
@@ -815,9 +706,9 @@ namespace Lab_14
                                                     try
                                                     {
                                                         Console.WriteLine("\nДемонстрация метода расширения\n");
-                                                        Console.WriteLine($"Максимальная точность {MaxSecondPart(collection2)}");
+                                                        Console.WriteLine($"Максимальная точность {collection2.MaxSecondPart()}");
                                                         Console.WriteLine("Инструменты с максимальной точностью:");
-                                                        PrintIEnumerableResult(FindItemsByMaxValue(collection2, MaxSecondPart(collection2)));
+                                                        PrintIEnumerableResult(collection2.FindItemsByMaxValue(collection2.MaxSecondPart()));
                                                     }
                                                     catch (Exception e)
                                                     {
@@ -855,7 +746,7 @@ namespace Lab_14
                                                 try
                                                 {
                                                     Console.WriteLine("\nДемонстрация метода расширения\n");
-                                                    PrintGroups(GroupSecondPart(collection2));
+                                                    PrintGroups(collection2.GroupSecondPart());
                                                 }
                                                 catch (Exception e)
                                                 {
@@ -902,7 +793,7 @@ namespace Lab_14
                             break;
                         }
                 }
-            } while (answer1 != 12);
+            } while (answer1 != 3);
         }
     }
 }
