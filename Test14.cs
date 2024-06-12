@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
-using NUnit.Framework;
 
 namespace Lab13_Test
 {
@@ -60,7 +59,7 @@ namespace Lab13_Test
         };
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.IGroupingException(Lab_14.Program.GroupByFirstPart(collection));
+                Lab_14.Program.IGroupingException(collection.GroupByFirstPart());
             });
         }
 
@@ -123,7 +122,7 @@ namespace Lab13_Test
         };
             List<AccuracyToMeasuringTool> list = new List<AccuracyToMeasuringTool>();
             list = Lab_14.Program.CreateNewList();
-            var result = Lab_14.Program.Join_FirstPart(collection, list);
+            var result = collection.Join_FirstPart(list);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("{ Name = Пила, Material = Дерево, Accuracy = 1, Units = Сантиметры, ClassOfAccuracy = Приведенная точность }"));
         }
@@ -136,7 +135,7 @@ namespace Lab13_Test
             list = Lab_14.Program.CreateNewList();
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.Join_FirstPart(collection, list);
+                collection.Join_FirstPart(list);
             });
 
         }
@@ -150,7 +149,7 @@ namespace Lab13_Test
             { "2", new Queue<object>(new object[] { new HandTool(12, "Болгарка", "Металл"), new HandTool(15, "Лобзик", "Железо") }) },
             { "3", new Queue<object>(new object[] { new Instrument("Циркуль", 111), new Instrument("Отвертка", 45) }) }
         };
-            var result = Lab_14.Program.FindItemsByAccuracy(collection, 1);
+            var result = collection.FindItemsByAccuracy(1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
         }
@@ -166,7 +165,7 @@ namespace Lab13_Test
         };
 
             // Act
-            var result = Lab_14.Program.WhereHandToolFirstPart(collection);
+            var result = collection.WhereHandToolFirstPart();
 
             // Assert
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(4, result.Count);
@@ -211,7 +210,7 @@ namespace Lab13_Test
         };
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.UnionFirstPart(collection);
+                collection.UnionFirstPart();
             });
 
         }
@@ -224,7 +223,7 @@ namespace Lab13_Test
             Instrument toolSpecial = new Library_10.Instrument("Добавленный инструмент для проверки", 12);
             collection["1 магазин"].Enqueue(new Library_10.Instrument("Добавленный инструмент для проверки", 12));
             collection["2 магазин"].Enqueue(new Library_10.Instrument("Добавленный инструмент для проверки", 12));
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.UnionFirstPart(collection).Count(), 9);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.UnionFirstPart().Count(), 9);
         }
 
         [TestMethod]
@@ -246,7 +245,7 @@ namespace Lab13_Test
                 }
             }
 
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.MaxFirstPart(collection), 120);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.MaxFirstPart(), 120);
         }
 
         [TestMethod]
@@ -259,7 +258,7 @@ namespace Lab13_Test
         };
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.MaxFirstPart(collection);
+                collection.MaxFirstPart();
             });
         }
 
@@ -281,7 +280,7 @@ namespace Lab13_Test
                 }
             }
 
-            var result = Lab_14.Program.GroupByFirstPart(collection);
+            var result = collection.GroupByFirstPart();
             foreach (var group in result)
             {
                 foreach (var tool in group)
@@ -413,9 +412,9 @@ namespace Lab13_Test
         public void WhereSecondPart() //поиск всех инструментов, название которых состоят из нескольких слов 
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 25);
-            var consoleOutput = Lab_14.Program.WhereSecondPart(collection);
+            var consoleOutput = collection.WhereSecondPart();
             string result = "";
-            foreach (MeasuringTool s in Lab_14.Program.WhereSecondPart(collection))
+            foreach (MeasuringTool s in collection.WhereSecondPart())
                 result += s.ToString();
             foreach (MeasuringTool item in collection)
             {
@@ -438,7 +437,7 @@ namespace Lab13_Test
                     Count += 1;
             }
             Lab_14.Program.EmptyMyCollectionException(collection);
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.CountSecondPart(collection, "Линейка"), Count);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.CountSecondPart("Линейка"), Count);
         }
 
         [TestMethod]
@@ -449,7 +448,7 @@ namespace Lab13_Test
             collection[0].Name = "Л";
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<Exception>(() =>
             {
-                Lab_14.Program.CountSecondPart(collection, "Линейка");        
+                collection.CountSecondPart("Линейка");        
             });
         }
 
@@ -460,7 +459,7 @@ namespace Lab13_Test
             double max = 0;
             foreach (MeasuringTool item in collection)
                 if (item.accuracy > max) max = item.accuracy;
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(Lab_14.Program.MaxSecondPart(collection), max);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(collection.MaxSecondPart(), max);
         }
 
         [TestMethod]
@@ -470,7 +469,7 @@ namespace Lab13_Test
             collection[0] = new MeasuringTool(12, "Молоток", "Ь", "Градусы", 1.0);
             collection[1] = new MeasuringTool(12, "Молоток", "Ь", "Градусы", 2.0);
             collection[2] = new MeasuringTool(12, "Болгарка", "Ь", "Градусы", 1.0);
-            var groupedData = Lab_14.Program.GroupSecondPart(collection);
+            var groupedData = collection.GroupSecondPart();
 
             // Assert
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNotNull(groupedData); // Проверяем, что результат не равен null
@@ -488,7 +487,7 @@ namespace Lab13_Test
             collection[0] = new MeasuringTool(1, "Пила", "Дерево", "Сантиметры", 1);
             collection.Add(new MeasuringTool(13, "Пила", "Металл", "Сантиметры", 0.1));
             collection.Add(new MeasuringTool(16, "Пила", "Металл", "Сантиметры", 1));
-            var result = Lab_14.Program.FindItemsByMaxValue(collection, 1);
+            var result = collection.FindItemsByMaxValue(1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
         }
@@ -498,7 +497,7 @@ namespace Lab13_Test
         public void WhereSecondPartLINQ() //поиск всех инструментов, название которых состоят из нескольких слов
         {
             MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 25);
-            var consoleOutput = Lab_14.Program.WhereSecondPart(collection);
+            var consoleOutput = collection.WhereSecondPart();
             string result = "";
             foreach (MeasuringTool s in Lab_14.Program.WhereSecondPartLINQ(collection))
                 result += s.ToString();
@@ -514,7 +513,7 @@ namespace Lab13_Test
         [TestMethod]
         public void CountSecondPartLINQ() //поиск количества вхождений инструментов в указанным именем 
         {
-            MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 90);
+            MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 180);
             int Count = 0;
             foreach (MeasuringTool item in collection)
             {
@@ -582,6 +581,14 @@ namespace Lab13_Test
             var result = Lab_14.Program.FindValue_2Part_ByAccuracy_LINQ(collection, 1);
             var consoleOutput = ConsoleOutput(() => { Lab_14.Program.PrintIEnumerableResult(result); });
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(consoleOutput.Contains("1: Пила, материал Дерево, единицы измерения Сантиметры, точность 1"));
+        }
+
+        [TestMethod]
+        public void WhereLINQ()
+        {
+            MyCollection<MeasuringTool> collection = new MyCollection<MeasuringTool>("q", 1);
+            collection[0] = new MeasuringTool(1, "Пила gbkf", "Дерево", "Сантиметры", 1);
+            Assert.AreEqual(Lab_14.Program.WhereSecondPartLINQ(collection).ToList().Count(), 1);
         }
 
         [TestClass]
