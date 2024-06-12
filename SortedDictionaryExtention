@@ -1,0 +1,83 @@
+using Library_10;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab_14
+{
+    public static class SortedDictionaryExtention //класс с методами расширения для SD
+    {
+        public static IEnumerable<object> Join_FirstPart(this SortedDictionary<string, Queue<object>> collection, List<AccuracyToMeasuringTool> list)
+        {
+            var result = collection.Values
+                      .SelectMany(item => item)
+                      .Where(tool => tool is MeasuringTool)
+                      .Join(list,
+                            tool => ((MeasuringTool)tool).accuracy,
+                            t => t.Accuracy,
+                            (tool, t) => new
+                            {
+                                Name = ((MeasuringTool)tool).Name,
+                                Material = ((MeasuringTool)tool).material,
+                                Accuracy = ((MeasuringTool)tool).accuracy,
+                                Units = ((MeasuringTool)tool).units,
+                                ClassOfAccuracy = t.ClassOfAccuracy
+                            });
+            Program.IEnumerableException(result);
+            return result;
+        }
+
+        public static List<object> FindItemsByAccuracy(this SortedDictionary<string, Queue<object>> dictionary, double accuracy) //метод для выборки элементов по значению accuracy
+        {
+            List<object> items = new List<object>();
+
+            foreach (var item in dictionary.Values.SelectMany(x => x).Where(x => x is MeasuringTool && ((MeasuringTool)x).Accuracy == accuracy))
+            {
+                items.Add(item);
+            }
+            return items;
+        }
+
+        public static List<HandTool> WhereHandToolFirstPart( this SortedDictionary<string, Queue<object>> collection) //метод для нахождения всех ручных инструментов в коллекции
+        {
+            var handTools = collection
+                .SelectMany(pair => pair.Value.OfType<HandTool>())
+                .ToList();
+            Program.IEnumerableException(handTools);
+            return handTools;
+        }
+
+        public static IEnumerable<object> UnionFirstPart(this SortedDictionary<string, Queue<object>> collection) //метод для нахождения одинаковых элементов среди магазинов
+        {
+            if (collection.Count() < 2) throw new Exception("Не хватает магазинов для слияния");
+            var inter = collection["1 магазин"].Union(collection["2 магазин"]);
+            Program.IEnumerableException(inter);
+            return inter;
+        }
+
+        public static double MaxFirstPart(this SortedDictionary<string, Queue<object>> collection) //метод для поиска максимальной точности измерительного инструмента
+        {
+            if (collection.Values.SelectMany(q => q).All(obj => !(obj is MeasuringTool)))
+            {
+                throw new Exception("В коллекции нет измерительных инструментов");
+            }
+            double maxAccuracy = collection
+                .SelectMany(pair => pair.Value.OfType<MeasuringTool>())
+                .ToList()
+                .Max(x => x.Accuracy);
+            return maxAccuracy;
+        }
+
+        public static IEnumerable<IGrouping<double, MeasuringTool>> GroupByFirstPart(this SortedDictionary<string, Queue<object>> collection) //метод для группировки по возрастанию точности
+        {
+            var sortId = collection
+                .SelectMany(pair => pair.Value.OfType<MeasuringTool>())
+                .GroupBy(x => x.Accuracy)
+                .OrderBy(g => g.Key);
+            Program.IGroupingException(sortId);
+            return sortId;
+        }
+    }
+}
